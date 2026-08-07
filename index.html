@@ -383,6 +383,267 @@
     </div>
   </div>
 </section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IM Systems — Dashboard Hero Section</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0a0a17;
+    --ink-soft:#6b6a85;
+    --paper:#ffffff;
+    --paper-2:#f6f5fc;
+    --violet:#7c5cff;
+    --violet-2:#4f46e5;
+    --mint:#2dd4bf;
+    --line:rgba(9,10,23,0.1);
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Inter',sans-serif;background:radial-gradient(90% 80% at 75% 10%,#f1effe 0%,var(--paper) 55%);color:var(--ink);-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  .dhero{padding:90px 0 70px;}
+  .dhero .wrap{display:grid;grid-template-columns:0.85fr 1.15fr;gap:50px;align-items:center;}
+  .dhero h1{font-size:clamp(32px,4vw,46px);line-height:1.14;letter-spacing:-0.02em;font-weight:800;margin-bottom:18px;}
+  .dhero h1 .grad{background:linear-gradient(100deg,var(--violet-2),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  .dhero p.lead{font-size:15px;color:var(--ink-soft);line-height:1.65;max-width:400px;margin-bottom:26px;}
+  .dhero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:30px;}
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;padding:14px 24px;border-radius:11px;transition:transform .3s var(--ease),box-shadow .3s var(--ease);}
+  .btn-fill{background:var(--ink);color:#fff;box-shadow:0 12px 26px rgba(9,10,23,0.28);}
+  .btn-fill:hover{transform:translateY(-3px);}
+  .btn-outline{border:1px solid var(--line);color:var(--ink);background:#fff;}
+  .btn-outline:hover{transform:translateY(-3px);background:var(--paper-2);}
+  .avatars-row{display:flex;align-items:center;gap:12px;}
+  .avatars{display:flex;}
+  .avatars img{width:32px;height:32px;border-radius:50%;border:2px solid #fff;object-fit:cover;margin-left:-9px;}
+  .avatars img:first-child{margin-left:0;}
+  .avatars-row .txt{font-size:12.5px;color:var(--ink-soft);}
+  .avatars-row .txt b{color:var(--ink);}
+
+  /* dashboard mockup */
+  .dash{background:#fff;border-radius:18px;box-shadow:0 40px 80px -20px rgba(9,10,23,0.22);border:1px solid var(--line);display:flex;overflow:hidden;transform:rotate(-0.6deg);}
+  .dash-side{width:150px;background:var(--ink);color:#fff;padding:20px 14px;flex-shrink:0;}
+  .dash-side .mk{width:26px;height:26px;background:var(--violet);border-radius:7px;display:flex;align-items:center;justify-content:center;margin-bottom:26px;}
+  .dash-side .mk svg{width:14px;height:14px;fill:#fff;}
+  .dash-nav a{display:flex;align-items:center;gap:9px;font-size:12px;padding:9px 10px;border-radius:8px;color:rgba(255,255,255,0.55);margin-bottom:3px;}
+  .dash-nav a svg{width:14px;height:14px;stroke:currentColor;flex-shrink:0;}
+  .dash-nav a.active{background:rgba(124,92,255,0.2);color:#fff;}
+
+  .dash-main{flex:1;padding:20px 24px;min-width:0;}
+  .dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
+  .dash-top h3{font-size:16px;}
+  .dash-top .icons{display:flex;gap:10px;}
+  .dash-top .icons span{width:28px;height:28px;border-radius:50%;background:var(--paper-2);display:flex;align-items:center;justify-content:center;}
+  .dash-top .icons span svg{width:13px;height:13px;stroke:var(--ink-soft);}
+
+  .dash-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px;}
+  .dkpi{border:1px solid var(--line);border-radius:12px;padding:12px 14px;}
+  .dkpi span{font-size:10.5px;color:var(--ink-soft);}
+  .dkpi b{display:block;font-size:17px;margin:3px 0;}
+  .dkpi .chg{font-size:10px;color:#16a34a;font-weight:600;}
+  .dkpi svg{width:100%;height:22px;margin-top:4px;}
+
+  .dash-row2{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;}
+  .dash-panel{border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .dash-panel .ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+  .dash-panel .ph b{font-size:12.5px;}
+  .dash-panel .ph span{font-size:10px;color:var(--ink-soft);}
+  .live-badge{display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:9.5px;color:#0d9488;text-transform:uppercase;letter-spacing:.03em;}
+  .live-badge i{width:5px;height:5px;border-radius:50%;background:#0d9488;animation:pulseLive 1.6s infinite;}
+  @keyframes pulseLive{0%{box-shadow:0 0 0 0 rgba(13,148,136,.5);}70%{box-shadow:0 0 0 6px rgba(13,148,136,0);}100%{box-shadow:0 0 0 0 rgba(13,148,136,0);}}
+  .dash-panel svg{width:100%;height:80px;}
+  #dpath{fill:none;stroke:var(--violet);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;transition:d 1s var(--ease);}
+  #dfill{transition:d 1s var(--ease);}
+  #dDot{offset-path:path('M0,60 C30,50 40,65 60,45 C80,25 100,55 120,40 C140,25 160,50 180,30 C200,10 220,40 240,25 C260,10 280,30 300,15');animation:dotMove 3.5s linear infinite;}
+  @keyframes dotMove{from{offset-distance:0%;}to{offset-distance:100%;}}
+  .dash{box-shadow:0 50px 100px -24px rgba(124,92,255,0.22),0 20px 40px -16px rgba(9,10,23,0.15);}
+  .dkpi{transition:transform .3s var(--ease),box-shadow .3s var(--ease);}
+  .dkpi:hover{transform:translateY(-3px);box-shadow:0 14px 28px -12px rgba(9,10,23,0.15);}
+  .toplist li{display:flex;justify-content:space-between;align-items:center;font-size:11px;padding:6px 0;color:var(--ink-soft);}
+  .toplist li b{color:var(--ink);font-weight:600;}
+  .toplist .bar{height:5px;background:var(--paper-2);border-radius:3px;margin-top:3px;overflow:hidden;}
+  .toplist .bar i{display:block;height:100%;background:var(--violet);border-radius:3px;}
+
+  /* trust row */
+  .trust2{text-align:center;padding-bottom:80px;}
+  .trust2 .tlabel{font-size:12.5px;color:var(--ink-soft);margin-bottom:24px;}
+  .logo-row2{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;opacity:.6;}
+  .logo-row2 span{font-weight:700;font-size:16px;color:var(--ink-soft);}
+  .logo-row2 span.serif{font-family:Georgia,serif;font-weight:400;letter-spacing:.06em;}
+
+  @media (max-width:980px){
+    .dhero .wrap{grid-template-columns:1fr;}
+    .dash-side{display:none;}
+  }
+  @media (max-width:600px){
+    .dash-kpis{grid-template-columns:1fr;}
+    .dash-row2{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<section class="dhero">
+  <div class="wrap">
+    <div>
+      <h1>The Fastest Way to<br><span class="grad">Launch Your Website.</span></h1>
+      <p class="lead">IM Systems helps you design, build and grow your business online — with a custom website and AI chatbot, live in days, not months.</p>
+      <div class="dhero-ctas">
+        <a href="#" class="btn btn-fill">Get Started Free →</a>
+        <a href="#" class="btn btn-outline">Watch Demo ▶</a>
+      </div>
+      <div class="avatars-row">
+        <div class="avatars">
+          <img src="https://i.pravatar.cc/64?img=12" alt="">
+          <img src="https://i.pravatar.cc/64?img=33" alt="">
+          <img src="https://i.pravatar.cc/64?img=47" alt="">
+          <img src="https://i.pravatar.cc/64?img=5" alt="">
+        </div>
+        <div class="txt"><b>Join 50+ businesses</b> who trust IM Systems</div>
+      </div>
+    </div>
+
+    <div class="dash" id="dashCard">
+      <div class="dash-side">
+        <div class="mk"><svg viewBox="0 0 100 100"><path d="M50 4 L61 30 L88 32 L67 50 L74 77 L50 62 L26 77 L33 50 L12 32 L39 30 Z"/></svg></div>
+        <div class="dash-nav">
+          <a class="active"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M18 9l-5 5-4-4-3 3"/></svg>Analytics</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18"/></svg>Website</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>Chatbot</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Leads</a>
+          <a><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>Settings</a>
+        </div>
+      </div>
+
+      <div class="dash-main">
+        <div class="dash-top">
+          <h3>Dashboard</h3>
+          <div class="icons">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg></span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M18 8a6 6 0 00-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg></span>
+          </div>
+        </div>
+
+        <div class="dash-kpis">
+          <div class="dkpi"><span>TOTAL VISITORS</span><b class="live-number" id="dVisitors">12,540</b><span class="chg">▲ 12%</span>
+            <svg viewBox="0 0 100 24" preserveAspectRatio="none"><path id="spark1" d="M0,18 L14,14 L28,16 L42,9 L56,12 L70,5 L84,8 L100,2" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="dkpi"><span>AI CHATS</span><b class="live-number" id="dChats">248</b><span class="chg">▲ 8%</span>
+            <svg viewBox="0 0 100 24" preserveAspectRatio="none"><path id="spark2" d="M0,16 L14,17 L28,10 L42,13 L56,8 L70,11 L84,4 L100,7" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="dkpi"><span>CONVERSION RATE</span><b>4.35%</b><span class="chg">▲ 1.7%</span>
+            <svg viewBox="0 0 100 24" preserveAspectRatio="none"><path id="spark3" d="M0,14 L14,12 L28,15 L42,8 L56,10 L70,6 L84,9 L100,3" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+        </div>
+
+        <div class="dash-row2">
+          <div class="dash-panel">
+            <div class="ph"><b>Overview</b><span class="live-badge"><i></i>LIVE · Last 30 Days</span></div>
+            <svg viewBox="0 0 300 80" preserveAspectRatio="none">
+              <defs><linearGradient id="ovGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7c5cff" stop-opacity="0.25"/><stop offset="100%" stop-color="#7c5cff" stop-opacity="0"/></linearGradient></defs>
+              <path id="dfill" d="M0,60 C30,50 40,65 60,45 C80,25 100,55 120,40 C140,25 160,50 180,30 C200,10 220,40 240,25 C260,10 280,30 300,15 L300,80 L0,80 Z" fill="url(#ovGrad)" stroke="none"/>
+              <path id="dpath" d="M0,60 C30,50 40,65 60,45 C80,25 100,55 120,40 C140,25 160,50 180,30 C200,10 220,40 240,25 C260,10 280,30 300,15"/>
+              <circle id="dDot" r="4" fill="#7c5cff"/>
+            </svg>
+          </div>
+          <div class="dash-panel">
+            <div class="ph"><b>Top Pages</b></div>
+            <ul class="toplist">
+              <li><span><b>Home</b></span><span>48%</span></li>
+              <li><span><b>Pricing</b></span><span>27%</span></li>
+              <li><span><b>Services</b></span><span>16%</span></li>
+              <li><span><b>Contact</b></span><span>9%</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust2">
+  <div class="wrap">
+    <div class="tlabel">Trusted by amazing businesses</div>
+    <div class="logo-row2">
+      <span class="serif">Aven.</span><span>Solvo</span><span class="serif">LUXE</span><span>◆ Vertex</span><span class="serif">Echo.</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* keep the overview chart genuinely live: regenerate path data periodically */
+  const dpath = document.getElementById('dpath');
+  const dfill = document.getElementById('dfill');
+  const dDot = document.getElementById('dDot');
+  function randomChartPath(){
+    const points = [];
+    let y = 55;
+    for(let x=0; x<=300; x+=30){
+      y += (Math.random()*36 - 18);
+      y = Math.max(8, Math.min(65, y));
+      points.push([x,y]);
+    }
+    let d = `M${points[0][0]},${points[0][1]}`;
+    for(let i=1;i<points.length;i++){
+      const [x,y] = points[i];
+      const [px,py] = points[i-1];
+      d += ` C${px+15},${py} ${x-15},${y} ${x},${y}`;
+    }
+    return d;
+  }
+  function updateChart(){
+    const d = randomChartPath();
+    dpath.setAttribute('d', d);
+    dfill.setAttribute('d', d + ' L300,80 L0,80 Z');
+    dDot.style.offsetPath = `path('${d}')`;
+  }
+  updateChart();
+  setInterval(updateChart, 3200);
+
+  /* animate the sparkline paths too, subtly, for a live feel */
+  function jitterSpark(id){
+    const el = document.getElementById(id);
+    if(!el) return;
+    setInterval(()=>{
+      const base = el.getAttribute('d').match(/-?\d+\.?\d*/g).map(Number);
+      for(let i=1;i<base.length;i+=2){ base[i] = Math.max(2, Math.min(20, base[i] + (Math.random()*6-3))); }
+      let d = `M${base[0]},${base[1]}`;
+      for(let i=2;i<base.length;i+=2){ d += ` L${base[i]},${base[i+1]}`; }
+      el.setAttribute('d', d);
+    }, 2600);
+  }
+  jitterSpark('spark1'); jitterSpark('spark2'); jitterSpark('spark3');
+
+  function tickNumber(el, fn){
+    if(!el) return;
+    setInterval(()=>{ el.textContent = fn(); }, 2800 + Math.random()*1200);
+  }
+  tickNumber(document.getElementById('dVisitors'), ()=> (12400+Math.floor(Math.random()*300)).toLocaleString());
+  tickNumber(document.getElementById('dChats'), ()=> 240+Math.floor(Math.random()*20));
+
+  const dashCard = document.getElementById('dashCard');
+  if(window.matchMedia('(hover:hover)').matches){
+    dashCard.addEventListener('mousemove',(e)=>{
+      const r = dashCard.getBoundingClientRect();
+      const x = (e.clientX-r.left)/r.width-0.5, y=(e.clientY-r.top)/r.height-0.5;
+      dashCard.style.transform = `rotate(-0.6deg) rotateX(${-y*4}deg) rotateY(${x*4}deg)`;
+    });
+    dashCard.addEventListener('mouseleave',()=>{ dashCard.style.transform = 'rotate(-0.6deg)'; });
+  }
+</script>
+
+</body>
+</html>
 
 <div class="ticker">
   <div class="ticker-track">
